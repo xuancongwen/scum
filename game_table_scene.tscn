@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8mcueusnk4sp"]
+
+[ext_resource type="Script" uid="uid://b8oanpgbhkn8t" path="res://game_table_scene.gd" id="1_dxvy4"]
+[ext_resource type="PackedScene" uid="uid://be30n5m6m7hvl" path="res://hand_scene.tscn" id="2_8eodd"]
+[ext_resource type="PackedScene" uid="uid://c14e8l3ylrn75" path="res://card_scene.tscn" id="2_lq6jv"]
+
+[node name="Table" type="Node2D"]
+script = ExtResource("1_dxvy4")
+
+[node name="PlayerHand" parent="." instance=ExtResource("2_8eodd")]
+position = Vector2(575, 560)
+is_player = true
+
+[node name="OpponentLeft" parent="." instance=ExtResource("2_8eodd")]
+position = Vector2(100, 330)
+is_horizontal = false
+
+[node name="OpponentRight" parent="." instance=ExtResource("2_8eodd")]
+position = Vector2(1050, 330)
+is_horizontal = false
+
+[node name="OpponentTop" parent="." instance=ExtResource("2_8eodd")]
+position = Vector2(575, 85)
+
+[node name="DealtCard" parent="." instance=ExtResource("2_lq6jv")]
+position = Vector2(575, 330)
+face_up = false
+ignore_mouse = true

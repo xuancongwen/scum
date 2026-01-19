@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=3 uid="uid://c14e8l3ylrn75"]
+
+[ext_resource type="Script" uid="uid://geejbfegiwsy" path="res://card_scene.gd" id="1_1mof2"]
+[ext_resource type="Texture2D" uid="uid://d226okqc6liqw" path="res://assets/cards/card-back-blue.png" id="2_1mof2"]
+
+[sub_resource type="Animation" id="Animation_1mof2"]
+resource_name = "Hover"
+length = 0.2
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -15)]
+}
+
+[sub_resource type="Animation" id="Animation_eafyo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s2bil"]
+_data = {
+&"Hover": SubResource("Animation_1mof2"),
+&"RESET": SubResource("Animation_eafyo")
+}
+
+[node name="CardScene" type="Node2D"]
+script = ExtResource("1_1mof2")
+
+[node name="CardSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_1mof2")
+
+[node name="Control" type="Control" parent="CardSprite"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -48.0
+offset_top = -71.0
+offset_right = 47.0
+offset_bottom = 71.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CardSprite"]
+libraries = {
+&"": SubResource("AnimationLibrary_s2bil")
+}
+
+[connection signal="mouse_entered" from="CardSprite/Control" to="." method="_on_control_mouse_entered"]
+[connection signal="mouse_exited" from="CardSprite/Control" to="." method="_on_control_mouse_exited"]
