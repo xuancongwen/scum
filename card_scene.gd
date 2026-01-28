@@ -30,7 +30,8 @@ func get_card_width():
 func _ready():
     if CARD_ASSETS == {}:
         const asset_path_prefix = "res://assets/cards/card-"
-        CARD_ASSETS["BLANK"] = load("%sback-blue.png" % [asset_path_prefix])
+        if !CARD_ASSETS.has("BLANK"):
+            CARD_ASSETS["BLANK"] = load("%sback-blue.png" % [asset_path_prefix])
 
         var d := Deck.standard()
         while d.cards_remaining() > 0:
