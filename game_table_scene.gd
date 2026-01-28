@@ -7,9 +7,6 @@ var deck: Deck = Deck.standard()
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
     deck.shuffle()
-
-    $DealtCard.face_up = false
-    $DealtCard.ignore_mouse = true
     _deal_out_hands()
 
 func _deal_out_hands() -> void:
