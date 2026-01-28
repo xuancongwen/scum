@@ -37,7 +37,8 @@ func _ready():
             var c := d.draw()
 
             var resource_name := "%s%s-%d.png" % [asset_path_prefix, c.suit_name.to_lower(), c.rank+1]
-            CARD_ASSETS[c.inspect()] = load(resource_name)
+            if !CARD_ASSETS.has(c.inspect()):
+                CARD_ASSETS[c.inspect()] = load(resource_name)
 
 func _update_card_sprite():
     if face_up:
